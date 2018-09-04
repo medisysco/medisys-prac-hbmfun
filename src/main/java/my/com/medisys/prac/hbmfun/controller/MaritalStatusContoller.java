@@ -32,6 +32,7 @@ public class MaritalStatusContoller {
         Map<String, Object> res = new HashMap<String, Object>();
         List<MaritalStatus> list = service.findAll();
         String message = CollectionUtils.isEmpty(list) ? "No Record Found" : "Records Found";
+        
         res.put("message", message);
         res.put("success", true);
         res.put("data", list);
@@ -39,10 +40,11 @@ public class MaritalStatusContoller {
     }
 
     @GetMapping("/{maritalStatusCode}")
-    public Map<String, Object> findByMaritalStatusCode(@PathVariable(value = "maritalStatusCode") String maritalStatusCode) {
+    public Map<String, Object> findByMaritalStatusCode(@PathVariable("maritalStatusCode") String maritalStatusCode) {
         Map<String, Object> res = new HashMap<String, Object>();
         MaritalStatus maritalStatus = service.findByMaritalStatusCode(maritalStatusCode);
         String message = ObjectUtils.isEmpty(maritalStatus) ? "No Record Found" : "One Record Found";
+        
         res.put("data", maritalStatus);
         res.put("message", message);
         res.put("success", true);

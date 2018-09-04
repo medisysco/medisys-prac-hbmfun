@@ -29,9 +29,10 @@ public class GenderController {
 
     @GetMapping
     public Map<String, Object> findAll() {
-        Map<String, Object> res = new HashMap<String, Object>();
         List<Gender> genders = service.findAll();
+        Map<String, Object> res = new HashMap<String, Object>();
         String message = CollectionUtils.isEmpty(genders) ? "No Record Found" : "Records Found";
+        
         res.put("message", message);
         res.put("data", genders);
         res.put("success", true);
@@ -39,10 +40,11 @@ public class GenderController {
     }
 
     @GetMapping("/{genderCode}")
-    public Map<String, Object> findByGenderCode(@PathVariable(value = "genderCode") String genderCode) {
-        Map<String, Object> res = new HashMap<String, Object>();
+    public Map<String, Object> findByGenderCode(@PathVariable("genderCode") String genderCode) {
         Gender gender = service.findByGenderCode(genderCode);
+        Map<String, Object> res = new HashMap<String, Object>();
         String message = ObjectUtils.isEmpty(gender) ? "No Record Found" : "One Record Found";
+        
         res.put("message", message);
         res.put("success", true);
         res.put("data", gender);
